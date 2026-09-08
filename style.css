@@ -39,3 +39,106 @@ footer a { margin-right: 1.1rem; }
   :root { --bg: #FFFFFF; --raised: #F4F7F6; --line: #E1E7E5; --text: #101413; --mute: #5C6B69; --jade: #0F9A6B; }
   p, li { color: #2C3634; }
 }
+
+/* ─── Landing page ─────────────────────────────────────────────────────────
+   Committed to one look rather than following the viewer's theme: the app is
+   dark, and a light landing page would hand people the wrong first
+   impression of the product they're about to open. */
+.landing {
+  --ink: #0B0E0F;
+  --raise: #12191A;
+  --edge: #1E2829;
+  --fog: #94A5A2;
+  --chalk: #ECF3F1;
+  --jade: #34D399;
+  --jade-lit: #7BEFC2;
+  background: var(--ink);
+  color: var(--chalk);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+.landing section { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 62rem; margin: 0 auto; padding: 1.4rem 1.5rem;
+}
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--chalk); font-weight: 800; letter-spacing: -.02em; }
+.brand img { border-radius: 8px; }
+.nav-cta { color: var(--jade); text-decoration: none; font-weight: 700; font-size: .95rem; }
+.nav-cta:hover { color: var(--jade-lit); }
+
+.hero { padding-top: clamp(3rem, 9vw, 6.5rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); text-align: center; }
+.eyebrow {
+  color: var(--jade); font-size: .78rem; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase; margin: 0 0 1.1rem;
+}
+.hero h1 {
+  font-size: clamp(2.3rem, 7.5vw, 4.4rem); line-height: 1.02;
+  letter-spacing: -.035em; font-weight: 850; margin: 0 0 1.3rem;
+  text-wrap: balance;
+}
+.hero h1 em { font-style: normal; color: var(--jade); }
+.sub { max-width: 34rem; margin: 0 auto 2.2rem; color: var(--fog); font-size: clamp(1rem, 2.2vw, 1.15rem); }
+
+.cta-row { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .95rem 1.7rem; border-radius: 999px; font-weight: 800;
+  font-size: 1rem; text-decoration: none; letter-spacing: -.01em;
+}
+.btn-primary { background: var(--jade); color: #052117; }
+.btn-primary:hover { background: var(--jade-lit); }
+/* Placeholder until the listing is live — reads as a promise, not a dead link. */
+.is-soon { background: var(--raise); color: var(--fog); border: 1px dashed var(--edge); cursor: default; }
+.btn-ghost { color: var(--chalk); border: 1px solid var(--edge); }
+.btn-ghost:hover { border-color: var(--jade); color: var(--jade); }
+.fineprint { margin-top: 1.1rem; color: #6E7D7A; font-size: .85rem; }
+
+.proof {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 2.2rem);
+  padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+.proof img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--edge); display: block; }
+.proof figure { margin: 0; }
+.proof .lift { transform: translateY(-1.6rem); }
+.proof figcaption { margin-top: .9rem; color: var(--fog); font-size: .9rem; text-align: center; }
+
+.how { padding-bottom: clamp(3rem, 7vw, 5rem); }
+.how h2, .get h2 {
+  font-size: clamp(1.7rem, 4.4vw, 2.6rem); letter-spacing: -.03em;
+  font-weight: 850; margin: 0 0 2.2rem; text-wrap: balance; text-align: center;
+}
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.steps li { background: var(--raise); border: 1px solid var(--edge); border-radius: 16px; padding: 1.6rem 1.4rem; }
+/* Numbered because the order is the product: terms first, then the work. */
+.num { color: var(--jade); font-weight: 850; font-size: .8rem; letter-spacing: .12em; }
+.steps h3 { margin: .6rem 0 .5rem; font-size: 1.15rem; letter-spacing: -.02em; }
+.steps p { margin: 0; color: var(--fog); font-size: .95rem; }
+
+.pitch { padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.pitch blockquote {
+  margin: 0; padding: clamp(2rem, 5vw, 3.2rem);
+  background: linear-gradient(160deg, rgba(52,211,153,.09), transparent 70%);
+  border: 1px solid var(--edge); border-radius: 22px; text-align: center;
+}
+.pitch p { margin: 0; color: var(--fog); font-size: clamp(1.05rem, 2.6vw, 1.35rem); }
+.pitch .turn { margin-top: .7rem; color: var(--jade); font-weight: 850; font-size: clamp(1.4rem, 4vw, 2.1rem); letter-spacing: -.03em; }
+
+.get { text-align: center; padding-bottom: clamp(3.5rem, 8vw, 5.5rem); }
+.foot {
+  max-width: 62rem; margin: 0 auto; padding: 1.8rem 1.5rem 3rem;
+  border-top: 1px solid var(--edge); display: flex; gap: 1rem;
+  justify-content: space-between; flex-wrap: wrap; color: #6E7D7A; font-size: .85rem;
+}
+.foot a { color: #6E7D7A; text-decoration: none; margin-left: 1.1rem; }
+.foot a:hover { color: var(--jade); }
+.foot nav a:first-child { margin-left: 0; }
+
+@media (max-width: 720px) {
+  .proof, .steps { grid-template-columns: 1fr; }
+  .proof .lift { transform: none; }
+  .proof figure:nth-child(n+2) { display: none; }
+  .foot { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
