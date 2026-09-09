@@ -173,3 +173,18 @@ footer a { margin-right: 1.1rem; }
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
 }
+
+.wl-row { display: flex; gap: .6rem; width: 100%; flex-wrap: wrap; justify-content: center; }
+.wl-form { flex-direction: column; align-items: center; gap: 1rem; }
+/* Left-aligned against a centred form: a consent line has to read as a
+   sentence someone actually reads, not as centred marketing copy. */
+.wl-consent {
+  display: flex; gap: .65rem; align-items: flex-start;
+  max-width: 30rem; text-align: left; color: var(--fog);
+  font-size: .88rem; line-height: 1.45; cursor: pointer;
+}
+.wl-consent input {
+  flex: 0 0 auto; margin-top: .18rem; width: 1.05rem; height: 1.05rem;
+  accent-color: var(--jade); cursor: pointer;
+}
+.wl-consent input:focus-visible { outline: 2px solid var(--jade); outline-offset: 2px; }

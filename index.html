@@ -29,10 +29,7 @@
     you've been there long enough to open them.
   </p>
   <div class="cta-row">
-    <span class="btn btn-primary is-soon">
-      <span class="btn-label">Coming to the App&nbsp;Store</span>
-    </span>
-    <a class="btn btn-ghost" href="https://testflight.apple.com/join/bMtkDpZv">Join the beta</a>
+    <a class="btn btn-primary" href="#waitlist">Get notified at launch</a>
   </div>
   <p class="fineprint">Free to start. No account, no sign-up.</p>
 </section>
@@ -88,22 +85,28 @@
   </p>
 
   <form class="wl-form" id="wl-form" novalidate>
-    <label class="visually-hidden" for="wl-email">Email address</label>
-    <input id="wl-email" name="email" type="email" inputmode="email"
-           autocomplete="email" placeholder="you@example.com" required>
-    <button type="submit" id="wl-submit">Notify me</button>
+    <div class="wl-row">
+      <label class="visually-hidden" for="wl-email">Email address</label>
+      <input id="wl-email" name="email" type="email" inputmode="email"
+             autocomplete="email" placeholder="you@example.com" required>
+      <button type="submit" id="wl-submit" disabled>Notify me</button>
+    </div>
+    <!-- Unticked by default and required. A pre-ticked box is not consent
+         under GDPR or Canada's anti-spam law, and Canada is a territory the
+         app actually ships to. -->
+    <label class="wl-consent">
+      <input type="checkbox" id="wl-consent" required>
+      <span>I agree to receive email updates about Self Max. You can unsubscribe at any time.</span>
+    </label>
   </form>
   <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
-  <p class="fineprint">Or <a href="https://testflight.apple.com/join/bMtkDpZv">try the beta now</a> — limited spots.</p>
+  <p class="fineprint">One email at launch. Nothing else.</p>
 </section>
 
 <section class="get" id="get">
   <h2>Stop negotiating with yourself.</h2>
   <div class="cta-row center">
-    <span class="btn btn-primary is-soon">
-      <span class="btn-label">Coming to the App&nbsp;Store</span>
-    </span>
-    <a class="btn btn-ghost" href="https://testflight.apple.com/join/bMtkDpZv">Join the beta</a>
+    <a class="btn btn-primary" href="#waitlist">Get notified at launch</a>
   </div>
   <p class="fineprint">iPhone. Free to start.</p>
 </section>
@@ -128,7 +131,13 @@ const FALLBACK_TO = "contact@selfmaxapp.com";
 const form = document.getElementById("wl-form");
 const field = document.getElementById("wl-email");
 const button = document.getElementById("wl-submit");
+const consent = document.getElementById("wl-consent");
 const status = document.getElementById("wl-status");
+
+// Nothing can be submitted until the box is ticked. Consent has to be an act,
+// not an oversight — which is also the only version of it worth having if
+// anyone ever asks how the list was built.
+consent.addEventListener("change", () => { button.disabled = !consent.checked; });
 
 function say(text, kind) {
   status.textContent = text;
@@ -146,16 +155,32 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (!consent.checked) {
+    say("Please tick the box to confirm you'd like updates.", "bad");
+    consent.focus();
+    return;
+  }
+
   button.disabled = true;
   const previous = button.textContent;
   button.textContent = "Sending…";
+
+  // Recorded alongside the address: what they agreed to and when. If the list
+  // is ever questioned, "they ticked a box" is worth far less than a stored
+  // record of the wording they saw.
+  const payload = {
+    email,
+    consent: true,
+    consentText: "I agree to receive email updates about Self Max.",
+    consentedAt: new Date().toISOString(),
+  };
 
   if (!WAITLIST_ENDPOINT) {
     window.location.href = "mailto:" + FALLBACK_TO +
       "?subject=" + encodeURIComponent("Self Max waitlist") +
       "&body=" + encodeURIComponent("Add me to the waitlist: " + email);
     say("Opening your email app — just hit send.", "ok");
-    button.disabled = false;
+    button.disabled = !consent.checked;
     button.textContent = previous;
     return;
   }
@@ -164,14 +189,14 @@ form.addEventListener("submit", async (event) => {
     const response = await fetch(WAITLIST_ENDPOINT, {
       method: "POST",
       headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify(payload),
     });
     if (!response.ok) throw new Error(response.status);
     form.hidden = true;
     say("You're on the list. See you at launch.", "ok");
   } catch (error) {
     say("Something went wrong. Email " + FALLBACK_TO + " and I'll add you.", "bad");
-    button.disabled = false;
+    button.disabled = !consent.checked;
     button.textContent = previous;
   }
 });
