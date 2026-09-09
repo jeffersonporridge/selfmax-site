@@ -18,7 +18,7 @@
     <img src="img/icon.png" alt="" width="30" height="30">
     <span>Self Max</span>
   </a>
-  <a class="nav-cta" href="#get">Get the app</a>
+  <a class="nav-cta" href="#waitlist">Get notified</a>
 </header>
 
 <section class="hero">
@@ -80,6 +80,23 @@
   </blockquote>
 </section>
 
+<section class="waitlist" id="waitlist">
+  <h2>Be there on day one.</h2>
+  <p class="wl-sub">
+    Leave your email and you'll hear the moment Self Max is on the App&nbsp;Store.
+    Nothing else, ever.
+  </p>
+
+  <form class="wl-form" id="wl-form" novalidate>
+    <label class="visually-hidden" for="wl-email">Email address</label>
+    <input id="wl-email" name="email" type="email" inputmode="email"
+           autocomplete="email" placeholder="you@example.com" required>
+    <button type="submit" id="wl-submit">Notify me</button>
+  </form>
+  <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
+  <p class="fineprint">Or <a href="https://testflight.apple.com/join/bMtkDpZv">try the beta now</a> — limited spots.</p>
+</section>
+
 <section class="get" id="get">
   <h2>Stop negotiating with yourself.</h2>
   <div class="cta-row center">
@@ -99,6 +116,66 @@
     <a href="mailto:contact@selfmaxapp.com">Contact</a>
   </nav>
 </footer>
+
+<script>
+// The waitlist posts to a form service, because static hosting can't receive
+// one. Until an endpoint is set it falls back to opening a pre-addressed
+// email — worse, but it works today rather than silently discarding
+// addresses, which is the one outcome a waitlist must never have.
+const WAITLIST_ENDPOINT = "";
+const FALLBACK_TO = "contact@selfmaxapp.com";
+
+const form = document.getElementById("wl-form");
+const field = document.getElementById("wl-email");
+const button = document.getElementById("wl-submit");
+const status = document.getElementById("wl-status");
+
+function say(text, kind) {
+  status.textContent = text;
+  status.className = "wl-status " + (kind || "");
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = field.value.trim();
+  // Deliberately loose. Rejecting a real address is a worse failure than
+  // accepting a typo, which only ever costs one bounced email.
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    say("That doesn't look like an email address.", "bad");
+    field.focus();
+    return;
+  }
+
+  button.disabled = true;
+  const previous = button.textContent;
+  button.textContent = "Sending…";
+
+  if (!WAITLIST_ENDPOINT) {
+    window.location.href = "mailto:" + FALLBACK_TO +
+      "?subject=" + encodeURIComponent("Self Max waitlist") +
+      "&body=" + encodeURIComponent("Add me to the waitlist: " + email);
+    say("Opening your email app — just hit send.", "ok");
+    button.disabled = false;
+    button.textContent = previous;
+    return;
+  }
+
+  try {
+    const response = await fetch(WAITLIST_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    if (!response.ok) throw new Error(response.status);
+    form.hidden = true;
+    say("You're on the list. See you at launch.", "ok");
+  } catch (error) {
+    say("Something went wrong. Email " + FALLBACK_TO + " and I'll add you.", "bad");
+    button.disabled = false;
+    button.textContent = previous;
+  }
+});
+</script>
 
 </body>
 </html>

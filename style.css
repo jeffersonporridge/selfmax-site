@@ -142,3 +142,34 @@ footer a { margin-right: 1.1rem; }
   .foot { flex-direction: column; align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ─── Waitlist ─────────────────────────────────────────────────────────── */
+.landing .waitlist { text-align: center; padding-bottom: clamp(3rem, 7vw, 4.5rem); }
+.wl-sub { max-width: 30rem; margin: -1.2rem auto 1.8rem; color: var(--fog); }
+.wl-form {
+  display: flex; gap: .6rem; justify-content: center;
+  max-width: 30rem; margin: 0 auto; flex-wrap: wrap;
+}
+.wl-form input {
+  flex: 1 1 15rem; min-width: 0;
+  padding: .95rem 1.2rem; border-radius: 999px;
+  background: var(--raise); border: 1px solid var(--edge);
+  color: var(--chalk); font: inherit; font-size: 1rem;
+}
+.wl-form input::placeholder { color: #5F6E6B; }
+.wl-form input:focus-visible { outline: 2px solid var(--jade); outline-offset: 2px; border-color: transparent; }
+.wl-form button {
+  padding: .95rem 1.7rem; border-radius: 999px; border: 0;
+  background: var(--jade); color: #052117;
+  font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer;
+}
+.wl-form button:hover:not(:disabled) { background: var(--jade-lit); }
+.wl-form button:disabled { opacity: .6; cursor: default; }
+.wl-status { min-height: 1.4rem; margin: .9rem 0 0; font-size: .92rem; }
+.wl-status.ok { color: var(--jade); }
+.wl-status.bad { color: #F2A65A; }
+/* Present for screen readers, absent for everyone else. */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
