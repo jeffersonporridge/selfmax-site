@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 41rem; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
-header { border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; margin-bottom: 2.5rem; }
+.wrap header { border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; margin-bottom: 2.5rem; }
 .mark {
   display: inline-block; font-weight: 800; font-size: 1.05rem;
   letter-spacing: -0.01em; color: var(--jade); text-decoration: none;
@@ -86,11 +86,12 @@ footer a { margin-right: 1.1rem; }
 .hero { padding-top: clamp(2.5rem, 7vw, 5rem); text-align: center; }
 .eyebrow {
   color: var(--jade); font-size: .78rem; font-weight: 800;
-  letter-spacing: .18em; text-transform: uppercase; margin: 0 0 1.1rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
 }
 .hero h1 {
   font-size: clamp(2.3rem, 7.5vw, 4.4rem); line-height: 1.02;
-  letter-spacing: -.035em; font-weight: 850; margin: 0 0 1.3rem;
+  letter-spacing: -.035em; font-weight: 850; margin: 0 0 clamp(1.3rem, 2.5vw, 1.7rem);
   text-wrap: balance;
 }
 .hero h1 em { font-style: normal; color: var(--jade); }
