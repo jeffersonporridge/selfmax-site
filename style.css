@@ -105,7 +105,7 @@ footer a { margin-right: 1.1rem; }
 .proof figcaption { margin-top: .9rem; color: var(--fog); font-size: .9rem; text-align: center; }
 
 .how { padding-bottom: clamp(3rem, 7vw, 5rem); }
-.how h2, .get h2 {
+.how h2, .get h2, .waitlist h2 {
   font-size: clamp(1.7rem, 4.4vw, 2.6rem); letter-spacing: -.03em;
   font-weight: 850; margin: 0 0 2.2rem; text-wrap: balance; text-align: center;
 }
@@ -145,7 +145,7 @@ footer a { margin-right: 1.1rem; }
 
 /* ─── Waitlist ─────────────────────────────────────────────────────────── */
 .landing .waitlist { text-align: center; padding-bottom: clamp(3rem, 7vw, 4.5rem); }
-.wl-sub { max-width: 30rem; margin: -1.2rem auto 1.8rem; color: var(--fog); }
+
 .wl-form {
   display: flex; gap: .6rem; justify-content: center;
   max-width: 30rem; margin: 0 auto; flex-wrap: wrap;
@@ -188,3 +188,5 @@ footer a { margin-right: 1.1rem; }
   accent-color: var(--jade); cursor: pointer;
 }
 .wl-consent input:focus-visible { outline: 2px solid var(--jade); outline-offset: 2px; }
+/* Present only to receive the submission. */
+#wl-sink { display: none; }

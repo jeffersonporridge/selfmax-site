@@ -79,15 +79,13 @@
 
 <section class="waitlist" id="waitlist">
   <h2>Be there on day one.</h2>
-  <p class="wl-sub">
-    Leave your email and you'll hear the moment Self Max is on the App&nbsp;Store.
-    Nothing else, ever.
-  </p>
-
-  <form class="wl-form" id="wl-form" novalidate>
+  <iframe name="wl-sink" id="wl-sink" title="Waitlist submission" hidden></iframe>
+  <form class="wl-form" id="wl-form" novalidate
+        action="https://docs.google.com/forms/d/e/1FAIpQLSetv1XUmOY5cdytGdgNwi4QySZveFW4Ccc_zkSLSNY5yb0u8Q/formResponse"
+        method="POST" target="wl-sink">
     <div class="wl-row">
       <label class="visually-hidden" for="wl-email">Email address</label>
-      <input id="wl-email" name="email" type="email" inputmode="email"
+      <input id="wl-email" name="entry.1639187119" type="email" inputmode="email"
              autocomplete="email" placeholder="you@example.com" required>
       <button type="submit" id="wl-submit" disabled>Notify me</button>
     </div>
@@ -95,12 +93,11 @@
          under GDPR or Canada's anti-spam law, and Canada is a territory the
          app actually ships to. -->
     <label class="wl-consent">
-      <input type="checkbox" id="wl-consent" required>
-      <span>I agree to receive email updates about Self Max. You can unsubscribe at any time.</span>
+      <input type="checkbox" id="wl-consent" name="entry.81818922" value="I agree" required>
+      <span>I agree to receive email updates about Self Max.</span>
     </label>
   </form>
   <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
-  <p class="fineprint">One email at launch. Nothing else.</p>
 </section>
 
 <section class="get" id="get">
@@ -121,17 +118,11 @@
 </footer>
 
 <script>
-// Posts into a Google Form, because static hosting can't receive a form of
-// its own. Visitors never see Google — they see this page, and the response
-// lands in a sheet.
-//
-// Both fields are marked required on Google's side as well as here, so a
-// submission that skipped this page and posted directly would still be
-// refused without consent.
-const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSetv1XUmOY5cdytGdgNwi4QySZveFW4Ccc_zkSLSNY5yb0u8Q/formResponse";
-const FIELD_EMAIL = "entry.1639187119";
-const FIELD_CONSENT = "entry.81818922";
-const CONSENT_VALUE = "I agree";
+// The form posts itself, into a hidden iframe, the way forms worked before
+// fetch existed. Google Forms sends no CORS headers and answers with a
+// cross-origin redirect, which a no-cors fetch will neither follow nor
+// report — the promise simply never settles, and the button sits on
+// "Sending" forever. A native submit has nothing to settle.
 const FALLBACK_TO = "contact@selfmaxapp.com";
 
 const form = document.getElementById("wl-form");
@@ -139,71 +130,58 @@ const field = document.getElementById("wl-email");
 const button = document.getElementById("wl-submit");
 const consent = document.getElementById("wl-consent");
 const status = document.getElementById("wl-status");
+const sink = document.getElementById("wl-sink");
 
-// Nothing can be submitted until the box is ticked. Consent has to be an act,
-// not an oversight — which is also the only version of it worth having if
-// anyone ever asks how the list was built.
-consent.addEventListener("change", () => { button.disabled = !consent.checked; });
+let submitting = false;
 
 function say(text, kind) {
   status.textContent = text;
   status.className = "wl-status " + (kind || "");
 }
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+// Nothing can be sent until the box is ticked. Consent has to be an act,
+// not an oversight.
+consent.addEventListener("change", () => { button.disabled = !consent.checked; });
+
+form.addEventListener("submit", (event) => {
   const email = field.value.trim();
   // Deliberately loose. Rejecting a real address is a worse failure than
   // accepting a typo, which only ever costs one bounced email.
   if (!/^\S+@\S+\.\S+$/.test(email)) {
+    event.preventDefault();
     say("That doesn't look like an email address.", "bad");
     field.focus();
     return;
   }
-
   if (!consent.checked) {
+    event.preventDefault();
     say("Please tick the box to confirm you'd like updates.", "bad");
     consent.focus();
     return;
   }
 
+  // Allowed through: the browser posts it into the iframe from here.
+  submitting = true;
   button.disabled = true;
-  const previous = button.textContent;
-  button.textContent = "Sending…";
+  button.textContent = "Sending";
+  say("");
 
-  // Recorded alongside the address: what they agreed to and when. If the list
-  // is ever questioned, "they ticked a box" is worth far less than a stored
-  // record of the wording they saw.
-  const payload = {
-    email,
-    consent: true,
-    consentText: "I agree to receive email updates about Self Max.",
-    consentedAt: new Date().toISOString(),
-  };
+  // The iframe's load event is the signal, but it is not guaranteed to
+  // arrive on every browser. Nothing here may leave the button stuck.
+  setTimeout(finish, 4000);
+});
 
-  const params = new URLSearchParams();
-  params.set(FIELD_EMAIL, payload.email);
-  params.set(FIELD_CONSENT, CONSENT_VALUE);
+function finish() {
+  if (!submitting) return;
+  submitting = false;
+  form.hidden = true;
+  say("You're on the list.", "ok");
+}
 
-  try {
-    // no-cors because Google Forms sends no CORS headers. The request is
-    // delivered; the reply is opaque, so success can't be read back. An
-    // optimistic message is the honest trade — the alternative is claiming
-    // failure whenever we simply cannot see.
-    await fetch(FORM_ACTION, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    form.hidden = true;
-    say("You're on the list. See you at launch.", "ok");
-  } catch (error) {
-    // Only reached if the request never left — offline, or blocked.
-    say("Couldn't send that. Email " + FALLBACK_TO + " and I'll add you.", "bad");
-    button.disabled = !consent.checked;
-    button.textContent = previous;
-  }
+sink.addEventListener("load", () => {
+  // Fires once for the blank iframe when the page loads; only a submission
+  // in flight counts.
+  if (submitting) finish();
 });
 </script>
 
