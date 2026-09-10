@@ -121,11 +121,17 @@
 </footer>
 
 <script>
-// The waitlist posts to a form service, because static hosting can't receive
-// one. Until an endpoint is set it falls back to opening a pre-addressed
-// email — worse, but it works today rather than silently discarding
-// addresses, which is the one outcome a waitlist must never have.
-const WAITLIST_ENDPOINT = "";
+// Posts into a Google Form, because static hosting can't receive a form of
+// its own. Visitors never see Google — they see this page, and the response
+// lands in a sheet.
+//
+// Both fields are marked required on Google's side as well as here, so a
+// submission that skipped this page and posted directly would still be
+// refused without consent.
+const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSetv1XUmOY5cdytGdgNwi4QySZveFW4Ccc_zkSLSNY5yb0u8Q/formResponse";
+const FIELD_EMAIL = "entry.1639187119";
+const FIELD_CONSENT = "entry.81818922";
+const CONSENT_VALUE = "I agree";
 const FALLBACK_TO = "contact@selfmaxapp.com";
 
 const form = document.getElementById("wl-form");
@@ -175,27 +181,26 @@ form.addEventListener("submit", async (event) => {
     consentedAt: new Date().toISOString(),
   };
 
-  if (!WAITLIST_ENDPOINT) {
-    window.location.href = "mailto:" + FALLBACK_TO +
-      "?subject=" + encodeURIComponent("Self Max waitlist") +
-      "&body=" + encodeURIComponent("Add me to the waitlist: " + email);
-    say("Opening your email app — just hit send.", "ok");
-    button.disabled = !consent.checked;
-    button.textContent = previous;
-    return;
-  }
+  const params = new URLSearchParams();
+  params.set(FIELD_EMAIL, payload.email);
+  params.set(FIELD_CONSENT, CONSENT_VALUE);
 
   try {
-    const response = await fetch(WAITLIST_ENDPOINT, {
+    // no-cors because Google Forms sends no CORS headers. The request is
+    // delivered; the reply is opaque, so success can't be read back. An
+    // optimistic message is the honest trade — the alternative is claiming
+    // failure whenever we simply cannot see.
+    await fetch(FORM_ACTION, {
       method: "POST",
-      headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
     });
-    if (!response.ok) throw new Error(response.status);
     form.hidden = true;
     say("You're on the list. See you at launch.", "ok");
   } catch (error) {
-    say("Something went wrong. Email " + FALLBACK_TO + " and I'll add you.", "bad");
+    // Only reached if the request never left — offline, or blocked.
+    say("Couldn't send that. Email " + FALLBACK_TO + " and I'll add you.", "bad");
     button.disabled = !consent.checked;
     button.textContent = previous;
   }
