@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Self Max — Earn your screen time</title>
-<meta name="description" content="Self Max blocks the apps you choose until you've earned the time at the gym.">
-<meta property="og:title" content="Self Max — Earn your screen time">
-<meta property="og:description" content="Your apps stay locked until you've put in the time at the gym.">
+<title>Self Max — Gym time unlocks screen time</title>
+<meta name="description" content="Your apps stay locked until you go to the gym. Self Max checks your location, so you can't talk your way out of it.">
+<meta property="og:title" content="Self Max — Gym time unlocks screen time">
+<meta property="og:description" content="Your apps stay locked until you go to the gym.">
 <meta property="og:image" content="https://selfmaxapp.com/img/icon.png">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
@@ -18,20 +18,29 @@
     <img src="img/icon.png" alt="" width="30" height="30">
     <span>Self Max</span>
   </a>
-  <a class="nav-cta" href="#waitlist">Get notified</a>
+  <a class="nav-cta" href="#get">Download</a>
 </header>
 
 <section class="hero">
-  <p class="eyebrow">Screen time, earned</p>
-  <h1>Your apps stay locked<br>until you've <em>put in the work</em>.</h1>
-  <p class="sub">
-    Pick the apps that eat your day. Pick your gym. They stay shut until
-    you've been there long enough to open them.
-  </p>
+  <h1>Your apps stay locked<br><em>until you go to the gym</em>.</h1>
+  <p class="sub">Gym time unlocks screen time. That's the whole app.</p>
   <div class="cta-row">
-    <a class="btn btn-primary" href="#waitlist">Get notified at launch</a>
+    <a class="btn btn-primary" href="#get">Download on the App Store</a>
   </div>
   <p class="fineprint">Free to start. No account, no sign-up.</p>
+</section>
+
+<!-- The split from the posts: same habit, opposite outcome. The repetition
+     is the point, so the two lines stay word-for-word parallel. -->
+<section class="split">
+  <div class="half">
+    <p class="label">Right now</p>
+    <p class="line">Your screen addiction costs you hours every day.</p>
+  </div>
+  <div class="half is-fix">
+    <p class="label">With Self Max</p>
+    <p class="line">Your screen addiction gets you in shape.</p>
+  </div>
 </section>
 
 <section class="proof">
@@ -44,9 +53,14 @@
     <figcaption>Then they open. Not before.</figcaption>
   </figure>
   <figure>
-    <img src="img/stats.jpg" width="1080" height="2347" alt="Weekly gym time compared against the population" loading="lazy">
+    <img src="img/stats.jpg" width="1080" height="2347" alt="Weekly gym time, tracked over time" loading="lazy">
     <figcaption>Proof you're not who you were.</figcaption>
   </figure>
+</section>
+
+<section class="statement">
+  <p>Studies show getting to the gym is the hardest part.</p>
+  <p class="turn">So that's the part this solves.</p>
 </section>
 
 <section class="how">
@@ -77,27 +91,12 @@
   </blockquote>
 </section>
 
-<section class="waitlist" id="waitlist">
-  <h2>Stop negotiating with yourself.</h2>
-  <iframe name="wl-sink" id="wl-sink" title="Waitlist submission" hidden></iframe>
-  <form class="wl-form" id="wl-form" novalidate
-        action="https://docs.google.com/forms/d/e/1FAIpQLSetv1XUmOY5cdytGdgNwi4QySZveFW4Ccc_zkSLSNY5yb0u8Q/formResponse"
-        method="POST" target="wl-sink">
-    <div class="wl-row">
-      <label class="visually-hidden" for="wl-email">Email address</label>
-      <input id="wl-email" name="entry.1639187119" type="email" inputmode="email"
-             autocomplete="email" placeholder="you@example.com" required>
-      <button type="submit" id="wl-submit" disabled>Notify me</button>
-    </div>
-    <!-- Unticked by default and required. A pre-ticked box is not consent
-         under GDPR or Canada's anti-spam law, and Canada is a territory the
-         app actually ships to. -->
-    <label class="wl-consent">
-      <input type="checkbox" id="wl-consent" name="entry.81818922" value="I agree" required>
-      <span>I agree to receive email updates about Self Max.</span>
-    </label>
-  </form>
-  <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
+<section class="get" id="get">
+  <h2>Start Self Maxxing.</h2>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://apps.apple.com/app/id6804875830">Download on the App Store</a>
+  </div>
+  <p class="fineprint">iPhone. Requires iOS 17 or later.</p>
 </section>
 
 <footer class="foot">
@@ -108,74 +107,6 @@
     <a href="mailto:contact@selfmaxapp.com">Contact</a>
   </nav>
 </footer>
-
-<script>
-// The form posts itself, into a hidden iframe, the way forms worked before
-// fetch existed. Google Forms sends no CORS headers and answers with a
-// cross-origin redirect, which a no-cors fetch will neither follow nor
-// report — the promise simply never settles, and the button sits on
-// "Sending" forever. A native submit has nothing to settle.
-const FALLBACK_TO = "contact@selfmaxapp.com";
-
-const form = document.getElementById("wl-form");
-const field = document.getElementById("wl-email");
-const button = document.getElementById("wl-submit");
-const consent = document.getElementById("wl-consent");
-const status = document.getElementById("wl-status");
-const sink = document.getElementById("wl-sink");
-
-let submitting = false;
-
-function say(text, kind) {
-  status.textContent = text;
-  status.className = "wl-status " + (kind || "");
-}
-
-// Nothing can be sent until the box is ticked. Consent has to be an act,
-// not an oversight.
-consent.addEventListener("change", () => { button.disabled = !consent.checked; });
-
-form.addEventListener("submit", (event) => {
-  const email = field.value.trim();
-  // Deliberately loose. Rejecting a real address is a worse failure than
-  // accepting a typo, which only ever costs one bounced email.
-  if (!/^\S+@\S+\.\S+$/.test(email)) {
-    event.preventDefault();
-    say("That doesn't look like an email address.", "bad");
-    field.focus();
-    return;
-  }
-  if (!consent.checked) {
-    event.preventDefault();
-    say("Please tick the box to confirm you'd like updates.", "bad");
-    consent.focus();
-    return;
-  }
-
-  // Allowed through: the browser posts it into the iframe from here.
-  submitting = true;
-  button.disabled = true;
-  button.textContent = "Sending";
-  say("");
-
-  // The iframe's load event is the signal, but it is not guaranteed to
-  // arrive on every browser. Nothing here may leave the button stuck.
-  setTimeout(finish, 4000);
-});
-
-function finish() {
-  if (!submitting) return;
-  submitting = false;
-  form.hidden = true;
-  say("You're on the list.", "ok");
-}
-
-sink.addEventListener("load", () => {
-  // Fires once for the blank iframe when the page loads; only a submission
-  // in flight counts.
-  if (submitting) finish();
-});
-</script>
 
 </body>
 </html>
