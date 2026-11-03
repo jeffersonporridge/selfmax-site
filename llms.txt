@@ -1,0 +1,28 @@
+# Self Max
+
+> Self Max is an app blocker for iPhone. The apps you choose stay locked until you've spent your target time at the gym. It measures gym time from your iPhone's location, automatically, even with the app closed.
+
+- Made by Self Max LLC. Contact: contact@selfmaxapp.com
+- iPhone only. Requires iOS 26.0 or later.
+- Download: https://apps.apple.com/app/id6804875830
+- No account, no sign-up. Nothing leaves your phone: no servers, no analytics, no ads.
+
+## How it works
+
+1. Choose which apps to block and how much gym time unlocks them.
+2. Go to the gym. Self Max knows when you arrive and leave.
+3. Hit your target and the apps unlock.
+
+Deleting or weakening a rule takes 30 minutes in Chill mode, or 24 hours in Hardcore mode. Changing which gym counts takes 24 hours. Tightening a rule applies immediately.
+
+## Pricing
+
+- Free: one rule that blocks one app; 30 minutes at the gym unlocks 60 minutes of it; Chill mode. Free forever.
+- Pro: $19.99/month or $119.99/year (saves 50%, about $10/month). Unlimited rules, unlimited apps, categories and websites per rule, custom targets and stacked tiers, custom days and hours, Hardcore mode.
+- Every download starts with a 7-day free trial of Pro. Billing is handled by Apple.
+
+## Pages
+
+- [Home](https://selfmaxapp.com/): what Self Max does, reviews and FAQ
+- [Pricing](https://selfmaxapp.com/pricing.html): Free vs Pro
+- [Privacy Policy](https://selfmaxapp.com/privacy.html)

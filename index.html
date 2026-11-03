@@ -11,6 +11,58 @@
 <meta property="og:image" content="https://selfmaxapp.com/img/icon.png">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
+<!-- Machine-readable facts for search engines and AI assistants. Prices and
+     FAQ answers here must stay in step with the visible copy below and with
+     pricing.html. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://selfmaxapp.com/#org",
+      "name": "Self Max LLC",
+      "url": "https://selfmaxapp.com/",
+      "logo": "https://selfmaxapp.com/img/icon.png",
+      "email": "contact@selfmaxapp.com",
+      "sameAs": ["https://apps.apple.com/app/id6804875830"]
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Self Max",
+      "alternateName": "Self Max: Earn Screen Time",
+      "description": "An app blocker for iPhone. The apps you choose stay locked until you've spent your target time at the gym, which Self Max measures from your location.",
+      "operatingSystem": "iOS 26.0 or later",
+      "applicationCategory": "HealthApplication",
+      "url": "https://selfmaxapp.com/",
+      "downloadUrl": "https://apps.apple.com/app/id6804875830",
+      "publisher": {"@id": "https://selfmaxapp.com/#org"},
+      "offers": [
+        {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Pro, monthly", "price": "19.99", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Pro, yearly", "price": "119.99", "priceCurrency": "USD"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can the lock be fooled?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Self Max counts gym time from your iPhone's location, not from a button you tap or a photo you send. The clock only runs while you're at the gym you saved. Changing which gym counts takes 24 hours to kick in, so you can't move your gym to your couch on a lazy night. Deleting or weakening a rule waits 30 minutes in Chill mode, or 24 hours in Hardcore."}},
+        {"@type": "Question", "name": "What if I need my phone in an emergency?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Self Max only locks the apps you pick. Calls, texts, maps and everything else keep working unless you choose to block them, and Emergency SOS always works. There's no instant unlock button, on purpose."}},
+        {"@type": "Question", "name": "Why a subscription?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Self Max has no ads, sells no data and runs no servers, so the subscription is how it gets paid for. The yearly plan works out to $10 a month, and the free plan never expires. If you're already paying for a gym you don't go to, Self Max is the part that gets you through the door."}},
+        {"@type": "Question", "name": "What does the free download include?",
+         "acceptedAnswer": {"@type": "Answer", "text": "One rule that blocks one app, where 30 minutes at the gym unlocks 60 minutes of it, in Chill mode. Pro adds unlimited rules, as many apps, categories and websites as you want, your own targets and tiers, custom days and hours, and Hardcore mode. Every download starts with 7 days of Pro free."}},
+        {"@type": "Question", "name": "Which iPhones does it work on?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Any iPhone running iOS 26.0 or later. Self Max is iPhone only for now."}},
+        {"@type": "Question", "name": "Can I get a refund?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Apple handles all billing for Self Max. Cancel anytime during the 7-day trial and you won't be charged. For a refund after that, request one from Apple at reportaproblem.apple.com."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body class="landing">
 
@@ -19,42 +71,73 @@
     <img src="img/icon.png" alt="" width="30" height="30">
     <span>Self Max</span>
   </a>
-  <a class="nav-cta" href="https://apps.apple.com/app/id6804875830">Download</a>
+  <nav class="nav-links">
+    <a href="pricing.html">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a class="nav-cta" href="https://apps.apple.com/app/id6804875830">Download</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <h1>Your apps stay locked<br><em>until you go to the gym</em>.</h1>
-  <p class="sub">Screen time is earned, not a distraction from the life you want.</p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="https://apps.apple.com/app/id6804875830">Download and try Pro free for 7 days</a>
+  <div class="hero-copy">
+    <p class="eyebrow">The app blocker you unlock at the gym</p>
+    <h1>Your apps stay locked<br><em>until you go to the gym</em>.</h1>
+    <p class="sub">Screen time is earned, not a distraction from the life you want.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6804875830">Download and try Pro free for 7 days</a>
+    </div>
+    <p class="fineprint">Free to download. No account, no sign-up. After the trial, Pro is $19.99/month or $119.99/year unless you cancel.</p>
+    <p class="fineprint"><a href="pricing.html">See what's free and what's Pro</a></p>
+    <!-- Update the count as ratings come in. Last checked 3 Nov 2026:
+         5.0 average from 10 ratings on the US App Store. -->
+    <a class="rating" href="https://apps.apple.com/app/id6804875830?see-all=reviews">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span>5.0 on the App Store · 10 ratings</span>
+    </a>
+    <!-- "As seen in" slot: add a strip here for the first real press or
+         Product Hunt mention. Left empty until one exists. -->
   </div>
-  <p class="fineprint">Free to download. No account, no sign-up. After the trial, Pro is $19.99/month or $119.99/year unless you cancel.</p>
+  <figure class="hero-shot">
+    <img src="img/earned-600.jpg"
+         srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
+         sizes="(max-width: 760px) 62vw, 300px"
+         width="1080" height="2347" alt="A completed rule in Self Max showing apps unlocked after a gym session">
+  </figure>
 </section>
 
-<!-- The split from the posts: same habit, opposite outcome. The repetition
-     is the point, so the two lines stay word-for-word parallel. -->
+<!-- The split from the posts: same habit, opposite outcome. The big lines
+     carry the audience's own words (the screen-time report number, earning
+     it back); the small lines underneath keep the original pairing. -->
 <section class="split">
   <div class="half">
     <p class="label">Right now</p>
-    <p class="line">Your screen addiction costs you hours every day.</p>
+    <p class="line">Your screen time report says 9 hours. Again.</p>
+    <p class="aside">Just 5 more minutes of doomscrolling turns into the whole night.</p>
   </div>
   <div class="half is-fix">
     <p class="label">With Self Max</p>
-    <p class="line">Your screen addiction gets you in shape.</p>
+    <p class="line">You earn your screen time back.</p>
+    <p class="aside">Your screen addiction gets you in shape.</p>
   </div>
 </section>
 
 <section class="proof">
   <figure>
-    <img src="img/ring.jpg" width="1080" height="2347" alt="A countdown ring filling as gym time is logged" loading="lazy">
+    <img src="img/ring.jpg" srcset="img/ring-400.jpg 400w, img/ring-600.jpg 600w, img/ring.jpg 1080w"
+         sizes="(max-width: 640px) 90vw, 300px"
+         width="1080" height="2347" alt="A countdown ring filling as gym time is logged" loading="lazy">
     <figcaption>The clock only moves while you're there.</figcaption>
   </figure>
   <figure class="lift">
-    <img src="img/earned.jpg" width="1080" height="2347" alt="A completed rule showing apps unlocked" loading="lazy">
+    <img src="img/earned.jpg" srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
+         sizes="(max-width: 640px) 90vw, 300px"
+         width="1080" height="2347" alt="A completed rule showing apps unlocked" loading="lazy">
     <figcaption>Then they open. Not before.</figcaption>
   </figure>
   <figure>
-    <img src="img/stats.jpg" width="1080" height="2347" alt="Weekly gym time, tracked over time" loading="lazy">
+    <img src="img/stats.jpg" srcset="img/stats-400.jpg 400w, img/stats-600.jpg 600w, img/stats.jpg 1080w"
+         sizes="(max-width: 640px) 90vw, 300px"
+         width="1080" height="2347" alt="Weekly gym time, tracked over time" loading="lazy">
     <figcaption>Proof you're not who you were.</figcaption>
   </figure>
 </section>
@@ -117,11 +200,84 @@
   </ul>
 </section>
 
+<!-- Verbatim App Store reviews: same words, same handles, same dates. Don't
+     edit the text, typos included. -->
+<section class="reviews">
+  <h2>What people are saying.</h2>
+  <ul class="quotes">
+    <li>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <h3>Really helpful!!</h3>
+      <blockquote><p>This app is great if you’re fighting phone addiction &amp; also need to be active, even with small goals. I literally have it set to a 30 min daily walk before I can doomscroll and it’s been so helpful for resetting my circadian rhythm before I flood my dopamine with clips and ads!! Love how innovative this is!</p></blockquote>
+      <p class="who">kelseyfarms · Oct 25, 2026</p>
+    </li>
+    <li>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <h3>Massive Improvement</h3>
+      <blockquote><p>This app has helped me lock in my priorities and accomplish my fitness goals! It has helped me slow down and manage each day to get the most out of everything. I love this app!</p></blockquote>
+      <p class="who">Lukeydukeydukeypookey · Oct 26, 2026</p>
+    </li>
+    <li>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <h3>Down with doomscrolling</h3>
+      <blockquote><p>Great contribution to the crusade against the Zuckerverse.  Clean, simple and effective.</p></blockquote>
+      <p class="who">-Venerated- · Oct 26, 2026</p>
+    </li>
+    <li>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <h3>Works from minute one</h3>
+      <blockquote><p>Helped me put scrolling where I want it to be (AFTER! )</p></blockquote>
+      <p class="who">juliette_da_boss · Oct 23, 2026</p>
+    </li>
+    <li>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <h3>Amazing!</h3>
+      <blockquote><p>This has given me so much more motivation that I needed to train.</p></blockquote>
+      <p class="who">Grace Briggs · Oct 23, 2026</p>
+    </li>
+  </ul>
+  <p class="more"><a href="https://apps.apple.com/app/id6804875830?see-all=reviews">Read every review on the App Store</a></p>
+</section>
+
 <section class="pitch">
   <blockquote>
     <p>Your screen addiction can be your biggest strength.</p>
     <p class="turn">The body you want is attainable.</p>
+    <p class="turn">End the day with a screen-time number you're not embarrassed by.</p>
+    <p class="turn">Be the one who showed up.</p>
   </blockquote>
+</section>
+
+<!-- Same questions and answers as the FAQPage data in the head. Change both
+     together. -->
+<section class="faq" id="faq">
+  <h2>Questions people ask first.</h2>
+  <dl class="qa">
+    <div>
+      <dt>Can the lock be fooled?</dt>
+      <dd>Self Max counts gym time from your iPhone's location, not from a button you tap or a photo you send. The clock only runs while you're at the gym you saved. Changing which gym counts takes 24 hours to kick in, so you can't move your gym to your couch on a lazy night. Deleting or weakening a rule waits 30 minutes in Chill mode, or 24 hours in Hardcore.</dd>
+    </div>
+    <div>
+      <dt>What if I need my phone in an emergency?</dt>
+      <dd>Self Max only locks the apps you pick. Calls, texts, maps and everything else keep working unless you choose to block them, and Emergency SOS always works. There's no instant unlock button, on purpose.</dd>
+    </div>
+    <div>
+      <dt>Why a subscription?</dt>
+      <dd>Self Max has no ads, sells no data and runs no servers, so the subscription is how it gets paid for. The yearly plan works out to $10 a month, and the free plan never expires. If you're already paying for a gym you don't go to, Self Max is the part that gets you through the door.</dd>
+    </div>
+    <div>
+      <dt>What does the free download include?</dt>
+      <dd>One rule that blocks one app, where 30 minutes at the gym unlocks 60 minutes of it, in Chill mode. Pro adds unlimited rules, as many apps, categories and websites as you want, your own targets and tiers, custom days and hours, and Hardcore mode. Every download starts with 7 days of Pro free. <a href="pricing.html">Compare Free and Pro</a>.</dd>
+    </div>
+    <div>
+      <dt>Which iPhones does it work on?</dt>
+      <dd>Any iPhone running iOS 26.0 or later. Self Max is iPhone only for now.</dd>
+    </div>
+    <div>
+      <dt>Can I get a refund?</dt>
+      <dd>Apple handles all billing for Self Max. Cancel anytime during the 7-day trial and you won't be charged. For a refund after that, request one from Apple at <a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a>.</dd>
+    </div>
+  </dl>
 </section>
 
 <section class="get" id="get">
@@ -130,11 +286,14 @@
     <a class="btn btn-primary" href="https://apps.apple.com/app/id6804875830">Download and try Pro free for 7 days</a>
   </div>
   <p class="fineprint">iPhone. Requires iOS 26.0 or later. Cancel anytime during the trial and you won't be charged.</p>
+  <p class="fineprint">Payment and cancellation are handled by Apple through your Apple Account.</p>
 </section>
 
 <footer class="foot">
   <span>© 2026 Self Max LLC</span>
   <nav>
+    <a href="pricing.html">Pricing</a>
+    <a href="#faq">FAQ</a>
     <a href="privacy.html">Privacy</a>
     <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms</a>
     <a href="mailto:contact@selfmaxapp.com">Contact</a>
