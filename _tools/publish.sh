@@ -24,9 +24,9 @@ PAGES=(
   echo '<?xml version="1.0" encoding="UTF-8"?>'
   echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
   for entry in $PAGES; do
-    file=${entry%%:*}; path=${entry#*:}
+    file=${entry%%:*}; url_path=${entry#*:}
     lastmod=$(git log -1 --format=%cs -- "$file")
-    echo "  <url><loc>$SITE$path</loc><lastmod>$lastmod</lastmod></url>"
+    echo "  <url><loc>$SITE$url_path</loc><lastmod>$lastmod</lastmod></url>"
   done
   echo '</urlset>'
 } > sitemap.xml
