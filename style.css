@@ -108,20 +108,6 @@ section, .foot {
 }
 .fineprint a { color: var(--mute); }
 .fineprint a:hover { color: var(--jade); }
-.rating {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 10px;
-  margin-top: 22px;
-  padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 14px;
-  color: var(--mute);
-  text-decoration: none;
-}
-.rating:hover { border-color: var(--jade); }
 .stars { color: var(--jade); letter-spacing: 0.08em; }
 h1 {
   font-size: clamp(38px, 7vw, 76px);
