@@ -1,0 +1,14 @@
+# Response headers for every route, in the _headers format Cloudflare Pages
+# and Netlify read. GitHub Pages (the current host) can't send custom headers
+# and doesn't publish this file (Jekyll skips names starting with "_"), so
+# it does nothing until the site moves to one of those hosts.
+#
+# The CSP is report-only to start: watch for a week, then rename the header
+# to Content-Security-Policy. 'unsafe-inline' covers the redirect pages'
+# one-line scripts and the JSON-LD blocks.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'none'

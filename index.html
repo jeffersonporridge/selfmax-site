@@ -4,11 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-itunes-app" content="app-id=6804875830">
-<title>Self Max: Gym time unlocks screen time</title>
+<title>Self Max: Apps stay locked until you go to the gym</title>
 <meta name="description" content="Your apps stay locked until you go to the gym. Self Max checks your location, so you can't talk your way out of it.">
-<meta property="og:title" content="Self Max: Gym time unlocks screen time">
+<link rel="canonical" href="https://selfmaxapp.com/">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://selfmaxapp.com/">
+<meta property="og:title" content="Self Max: Apps stay locked until you go to the gym">
 <meta property="og:description" content="Your apps stay locked until you go to the gym.">
-<meta property="og:image" content="https://selfmaxapp.com/img/icon.png">
+<meta property="og:image" content="https://selfmaxapp.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
 <!-- Machine-readable facts for search engines and AI assistants. Prices and
@@ -19,9 +26,19 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "headline": "Self Max: Apps stay locked until you go to the gym",
+      "url": "https://selfmaxapp.com/",
+      "mainEntityOfPage": "https://selfmaxapp.com/",
+      "image": "https://selfmaxapp.com/img/ring.jpg",
+      "dateModified": "2026-11-03",
+      "publisher": {"@id": "https://selfmaxapp.com/#org"}
+    },
+    {
       "@type": "Organization",
       "@id": "https://selfmaxapp.com/#org",
-      "name": "Self Max LLC",
+      "name": "Self Max",
+      "legalName": "Self Max LLC",
       "url": "https://selfmaxapp.com/",
       "logo": "https://selfmaxapp.com/img/icon.png",
       "email": "contact@selfmaxapp.com",
@@ -92,10 +109,13 @@
          Product Hunt mention. Left empty until one exists. -->
   </div>
   <figure class="hero-shot">
-    <img src="img/earned-600.jpg"
-         srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
-         sizes="(max-width: 760px) 62vw, 300px"
-         width="1080" height="2347" alt="A completed rule in Self Max showing apps unlocked after a gym session">
+    <picture>
+      <source type="image/webp" srcset="img/earned-400.webp 400w, img/earned-600.webp 600w, img/earned.webp 1080w" sizes="(max-width: 760px) 62vw, 300px">
+      <img src="img/earned-600.jpg"
+           srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
+           sizes="(max-width: 760px) 62vw, 300px"
+           width="1080" height="2347" alt="A completed rule in Self Max showing apps unlocked after a gym session">
+    </picture>
   </figure>
 </section>
 
@@ -117,21 +137,30 @@
 
 <section class="proof">
   <figure>
-    <img src="img/ring.jpg" srcset="img/ring-400.jpg 400w, img/ring-600.jpg 600w, img/ring.jpg 1080w"
-         sizes="(max-width: 640px) 90vw, 300px"
-         width="1080" height="2347" alt="A countdown ring filling as gym time is logged" loading="lazy">
+    <picture>
+      <source type="image/webp" srcset="img/ring-400.webp 400w, img/ring-600.webp 600w, img/ring.webp 1080w" sizes="(max-width: 640px) 90vw, 300px">
+      <img src="img/ring.jpg" srcset="img/ring-400.jpg 400w, img/ring-600.jpg 600w, img/ring.jpg 1080w"
+           sizes="(max-width: 640px) 90vw, 300px"
+           width="1080" height="2347" alt="A countdown ring filling as gym time is logged" loading="lazy">
+    </picture>
     <figcaption>The clock only moves while you're there.</figcaption>
   </figure>
   <figure class="lift">
-    <img src="img/earned.jpg" srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
-         sizes="(max-width: 640px) 90vw, 300px"
-         width="1080" height="2347" alt="A completed rule showing apps unlocked" loading="lazy">
+    <picture>
+      <source type="image/webp" srcset="img/earned-400.webp 400w, img/earned-600.webp 600w, img/earned.webp 1080w" sizes="(max-width: 640px) 90vw, 300px">
+      <img src="img/earned.jpg" srcset="img/earned-400.jpg 400w, img/earned-600.jpg 600w, img/earned.jpg 1080w"
+           sizes="(max-width: 640px) 90vw, 300px"
+           width="1080" height="2347" alt="A completed rule showing apps unlocked" loading="lazy">
+    </picture>
     <figcaption>Then they open. Not before.</figcaption>
   </figure>
   <figure>
-    <img src="img/stats.jpg" srcset="img/stats-400.jpg 400w, img/stats-600.jpg 600w, img/stats.jpg 1080w"
-         sizes="(max-width: 640px) 90vw, 300px"
-         width="1080" height="2347" alt="Weekly gym time, tracked over time" loading="lazy">
+    <picture>
+      <source type="image/webp" srcset="img/stats-400.webp 400w, img/stats-600.webp 600w, img/stats.webp 1080w" sizes="(max-width: 640px) 90vw, 300px">
+      <img src="img/stats.jpg" srcset="img/stats-400.jpg 400w, img/stats-600.jpg 600w, img/stats.jpg 1080w"
+           sizes="(max-width: 640px) 90vw, 300px"
+           width="1080" height="2347" alt="Weekly gym time, tracked over time" loading="lazy">
+    </picture>
     <figcaption>Proof you're not who you were.</figcaption>
   </figure>
 </section>
@@ -189,7 +218,7 @@
     </li>
     <li>
       <h3>Nothing leaves your phone</h3>
-      <p>No account, no sign-up. Your gym, your apps and your history stay on your iPhone.</p>
+      <p>No account, no sign-up. Your gym, your apps and your history stay on your iPhone. <a href="privacy.html">How Self Max handles your data</a>.</p>
     </li>
   </ul>
 </section>

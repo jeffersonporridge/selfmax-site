@@ -341,6 +341,29 @@ h2 {
   .proof .lift { transform: none; }
 }
 
+/* ---------- breadcrumbs + related links (pricing.html, privacy.html) ---------- */
+.crumbs { font-size: 14px; color: var(--faint); margin-bottom: 18px; }
+.crumbs a { color: var(--mute); text-decoration: none; }
+.crumbs a:hover { color: var(--jade); }
+.wrap .crumbs { margin-bottom: 0; }
+.related { padding-block: calc(var(--band) * 0.5) 0; }
+.related h2 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 12px;
+}
+.related ul { list-style: none; margin: 0; padding: 0; }
+.related li { border-top: 1px solid var(--line); padding-block: 14px; margin: 0; }
+.related a { color: var(--text); text-decoration: none; }
+.related a:hover { color: var(--jade); }
+.wrap .related { margin-top: 3.5rem; padding: 0; }
+.wrap .related h2 { font-size: 12px; margin: 0 0 12px; }
+.diagram { margin: 1.75rem 0 0; }
+.diagram img { width: 100%; height: auto; }
+
 /* ---------- pricing.html ---------- */
 .price-hero { padding-top: calc(var(--band) * 0.6); padding-bottom: calc(var(--band) * 0.5); }
 .plans {

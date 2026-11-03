@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
+  <title>Everything Self Max records stays on your iPhone. Nothing is sent to Self Max, because there are no Self Max servers.</title>
+  <rect width="640" height="300" rx="18" fill="#161A1B"/>
+  <!-- the phone -->
+  <rect x="40" y="28" width="250" height="244" rx="30" fill="#0B0E0F" stroke="#34D399" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="165" y="64" text-anchor="middle" fill="#34D399" font-size="12" font-weight="700" letter-spacing="2">YOUR IPHONE</text>
+  <g font-size="15" fill="#E9EFED">
+    <rect x="68" y="84" width="194" height="42" rx="12" fill="#161A1B" stroke="#262D2E"/>
+    <text x="165" y="110" text-anchor="middle">Your saved gym</text>
+    <rect x="68" y="136" width="194" height="42" rx="12" fill="#161A1B" stroke="#262D2E"/>
+    <text x="165" y="162" text-anchor="middle">Your rules and apps</text>
+    <rect x="68" y="188" width="194" height="42" rx="12" fill="#161A1B" stroke="#262D2E"/>
+    <text x="165" y="214" text-anchor="middle">Your gym history</text>
+  </g>
+  <!-- the blocked path -->
+  <line x1="306" y1="150" x2="444" y2="150" stroke="#5C6866" stroke-width="2" stroke-dasharray="6 6"/>
+  <g stroke="#E9EFED" stroke-width="3" stroke-linecap="round">
+    <line x1="364" y1="138" x2="388" y2="162"/>
+    <line x1="388" y1="138" x2="364" y2="162"/>
+  </g>
+  <text x="376" y="190" text-anchor="middle" fill="#8A9694" font-size="13">nothing sent</text>
+  <!-- no servers -->
+  <rect x="460" y="98" width="140" height="104" rx="16" fill="none" stroke="#5C6866" stroke-dasharray="6 6" stroke-width="2"/>
+  <text x="530" y="142" text-anchor="middle" fill="#8A9694" font-size="15">Self Max</text>
+  <text x="530" y="164" text-anchor="middle" fill="#8A9694" font-size="15">servers: none</text>
+</svg>
